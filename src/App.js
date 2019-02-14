@@ -5,9 +5,10 @@ import NotefulContext from './NotefulContext';
 // import STORE from './store';
 import Folderlist from './components/Folderlist'
 import Folder from './components/Folder';
+import AddFolder from './components/AddFolder';
 import Notelist from './components/Notelist';
 import NoteInfo from './components/NoteInfo';
-import AddFolder from './components/AddFolder';
+import AddNote from './components/AddNote';
 import './App.css';
 
 class App extends Component {
@@ -40,7 +41,6 @@ class App extends Component {
       })
     })
     .catch(error => console.log(error))
-    console.log(this.state)
   }
   // ===============================================================
 
@@ -50,13 +50,19 @@ class App extends Component {
       notes: newNotes
     })
   }
-
+  
+  addFolder = (folder) => {
+    this.setState({
+      folders: [...this.state.folders, folder]
+    })
+  }
 
   render() {
     const contextValue = {
       folders: this.state.folders,
       notes: this.state.notes,
       deleteNote: this.deleteNote,
+      addFolder: this.addFolder,
       // add new note, add new folder and delete note
     }
     console.log(contextValue)
@@ -87,6 +93,10 @@ class App extends Component {
                   path='/add-folder'
                   component={AddFolder}
                 />
+                <Route 
+                  path='/add-note'
+                  component={Folderlist} 
+                />
               </Switch>
             </nav>
             <main className="main-note">
@@ -103,6 +113,14 @@ class App extends Component {
                 <Route
                   path='/note/:noteId'
                   component={NoteInfo}
+                />
+                <Route 
+                  path='/add-folder'
+                  component={Notelist}
+                />                
+                <Route 
+                  path='/add-note'
+                  component={AddNote}
                 />
               </Switch>
             </main>

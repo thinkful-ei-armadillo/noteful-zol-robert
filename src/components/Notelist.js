@@ -3,20 +3,6 @@ import NotefulContext from '../NotefulContext';
 import { Link } from 'react-router-dom';
 import deleteNote from '../deleteNote'
 
-// function deleteNote(noteId, callBack){
-//     const options = {
-//                       method: 'DELETE',
-//                       headers: {'content-type': 'application/json'}
-//                     }
-    
-//     fetch(`http://localhost:9090/notes/${noteId}`, options)
-//                     .then(res => {
-//                         if(res.ok) return res.json()
-//                         else throw new Error(res.status)
-//                     })
-//                     .then(() => callBack(noteId))
-//                     .catch(error => console.log(error))
-// }
 
 class Notelist extends Component {
     static contextType = NotefulContext;
@@ -33,6 +19,7 @@ class Notelist extends Component {
         }
 
         return (
+            <>
                 <ul>
                     {
                         notes.map(note => {
@@ -53,6 +40,12 @@ class Notelist extends Component {
                                 )
                             })}
                 </ul>
+                {folderId && <button onClick={() => {
+                                                    this.context.folderId = folderId; 
+                                                    this.props.history.push('/add-note')
+                                                    }}
+                            >Add Note</button>}
+            </>
        )
     }
 }
