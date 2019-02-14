@@ -7,6 +7,7 @@ import Folderlist from './components/Folderlist'
 import Folder from './components/Folder';
 import Notelist from './components/Notelist';
 import NoteInfo from './components/NoteInfo';
+import AddFolder from './components/AddFolder';
 import './App.css';
 
 class App extends Component {
@@ -81,6 +82,10 @@ class App extends Component {
                 <Route
                   path='/note/:noteId'
                   component={Folder}
+                />
+                <Route
+                  path='/add-folder'
+                  component={AddFolder}
                 />
               </Switch>
             </nav>

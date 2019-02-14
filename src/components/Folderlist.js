@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NotefulContext from '../NotefulContext';
 import { Link } from 'react-router-dom'
 
+
 class Folderlist extends Component {
     static contextType = NotefulContext;
 
@@ -21,6 +22,7 @@ class Folderlist extends Component {
                 <ul className='folders'>
                     {folders}
                 </ul>
+                <button onClick={() => this.props.history.push('/add-folder')}>Add Folder</button>
             </div>
         ) 
     }
