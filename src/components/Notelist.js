@@ -40,11 +40,13 @@ class Notelist extends Component {
                                 )
                             })}
                 </ul>
-                {folderId && <button onClick={() => {
-                                                    this.context.folderId = folderId; 
-                                                    this.props.history.push('/add-note')
-                                                    }}
-                            >Add Note</button>}
+                
+                <button onClick={() => {
+                    this.context = {...this.context, folderId}; 
+                    console.log(`context`, this.context);
+                    this.props.history.push('/add-note')
+                    }}>
+                Add Note</button>
             </>
        )
     }
