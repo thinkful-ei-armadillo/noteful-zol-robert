@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Link} from 'react-router-dom';
 import NotefulContext from './NotefulContext';
 
 // import STORE from './store';
@@ -10,6 +10,7 @@ import Notelist from './components/Notelist';
 import NoteInfo from './components/NoteInfo';
 import AddNote from './components/AddNote';
 import './App.css';
+import NotefulError from './components/notefulError';
 
 class App extends Component {
   state = {
@@ -59,9 +60,10 @@ class App extends Component {
 
   addNote = (note) => {
     this.setState({
-      note: [...this.state.notes, note]
+      notes: [...this.state.notes, note]
     })
   }
+
 
   render() {
     const contextValue = {
@@ -70,10 +72,9 @@ class App extends Component {
       deleteNote: this.deleteNote,
       addFolder: this.addFolder,
       addNote: this.addNote,
-      // add new note, add new folder and delete note
     }
-  
     return (
+
       <NotefulContext.Provider value={contextValue}>
         <div className="App">
           <header>
@@ -81,7 +82,7 @@ class App extends Component {
           </header>
           <div className="main">
             <nav className="nav-bar">
-              <Switch>
+              <NotefulError>
                 <Route
                   exact
                   path='/'
@@ -104,10 +105,10 @@ class App extends Component {
                   path='/add-note'
                   component={Folderlist} 
                 />
-              </Switch>
+              </NotefulError>
             </nav>
             <main className="main-note">
-              <Switch>
+            <NotefulError>
                 <Route
                   exact
                   path='/'
@@ -129,7 +130,7 @@ class App extends Component {
                   path='/add-note'
                   component={AddNote}
                 />
-              </Switch>
+              </NotefulError>
             </main>
           </div>
         </div>

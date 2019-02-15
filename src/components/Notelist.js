@@ -17,7 +17,7 @@ class Notelist extends Component {
         if (folderId){
             notes = this.getNotesFolder(folderId);
         }
-
+        console.log(notes)
         return (
             <>
                 <ul>
@@ -40,10 +40,7 @@ class Notelist extends Component {
                                 )
                             })}
                 </ul>
-                
                 <button onClick={() => {
-                    this.context = {...this.context, folderId}; 
-                    console.log(`context`, this.context);
                     this.props.history.push('/add-note')
                     }}>
                 Add Note</button>
